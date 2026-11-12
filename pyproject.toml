@@ -1,12 +1,12 @@
 [project]
 name = "telecom-rag"
 version = "0.1.0"
-description = "Add your description here"
+description = "RAG-based telecom customer support assistant powered by Gemini and Chroma"
 readme = "README.md"
 authors = [
     { name = "Asad", email = "asadsarfraz474@gmail.com" }
 ]
-requires-python = ">=3.14"
+requires-python = ">=3.12"
 dependencies = [
     "chromadb>=1.5.9",
     "langchain>=1.4.10",
@@ -19,17 +19,22 @@ dependencies = [
     "pypdf>=7.0.1",
     "python-dotenv>=1.0.0",
     "sentence-transformers>=6.3.0",
-    "streamlit>=1.67.0",
+    "streamlit>=1.40.0",
 ]
 
 [project.scripts]
-telecom-rag = "telecom_rag:main"
-ingest-faq = "telecom_rag.ingest.ingest_faq:main"
+telecom-rag    = "telecom_rag:main"
+ingest-faq     = "telecom_rag.ingest.ingest_faq:main"
 ingest-tickets = "telecom_rag.ingest.ingest_tickets:main"
-ingest-guides = "telecom_rag.ingest.ingest_pdf:main"
-test-rag = "telecom_rag.rag_chain:main"
-telecom-chat = "telecom_rag.cli:chat"
- 
+ingest-guides  = "telecom_rag.ingest.ingest_pdf:main"
+telecom-chat   = "telecom_rag.cli:chat"
+# Removed: test-rag — not a real test runner; use `telecom-rag "question"` instead
+# (or add a main() to rag_chain.py first and keep the entry)
+
 [build-system]
 requires = ["uv_build>=0.12.19,<0.13.0"]
 build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-root = "src"
+module-name = "telecom_rag"
